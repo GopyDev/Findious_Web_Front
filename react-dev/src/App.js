@@ -11,7 +11,7 @@ const history = createBrowserHistory(
 console.log(history);
 
 
-
+const baseUrl = process.env.PUBLIC_URL; 
 class App extends Component {
   render() {
     return (
@@ -22,9 +22,9 @@ class App extends Component {
      <Router history={history}>
        
       <div>
-       <Route exact path='/' component={Home} /> 
-       <Route path='/landing' component={Landing} />
-       <Route path='/result' component={Result} /> 
+       <Route exact path={baseUrl + "/"} component={Home} /> 
+       <Route path={baseUrl + "/landing"} component={Landing} />
+       <Route path={baseUrl + "/result"} component={Result} /> 
        </div>
      </Router>
 </div>
