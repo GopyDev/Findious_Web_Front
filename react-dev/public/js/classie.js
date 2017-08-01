@@ -1,4 +1,4 @@
-/*!
+/* !
  * classie - class helper functions
  * from bonzo https://github.com/ded/bonzo
  * 
@@ -7,56 +7,55 @@
  * classie.remove( elem, 'my-unwanted-class' )
  */
 
-/*jshint browser: true, strict: true, undef: true */
+/* jshint browser: true, strict: true, undef: true */
 
 ( function( window ) {
 
-'use strict';
 
-// class helper functions from bonzo https://github.com/ded/bonzo
 
-function classReg( className ) {
-  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
-}
+    // class helper functions from bonzo https://github.com/ded/bonzo
 
-// classList support for class management
-// altho to be fair, the api sucks because it won't accept multiple classes at once
-var hasClass, addClass, removeClass;
-
-if ( 'classList' in document.documentElement ) {
-  hasClass = function( elem, c ) {
-    return elem.classList.contains( c );
-  };
-  addClass = function( elem, c ) {
-    elem.classList.add( c );
-  };
-  removeClass = function( elem, c ) {
-    elem.classList.remove( c );
-  };
-}
-else {
-  hasClass = function( elem, c ) {
-    return classReg( c ).test( elem.className );
-  };
-  addClass = function( elem, c ) {
-    if ( !hasClass( elem, c ) ) {
-      elem.className = elem.className + ' ' + c;
+    function classReg( className ) {
+        return new RegExp('(^|\\s+)' + className + '(\\s+|$)');
     }
-  };
-  removeClass = function( elem, c ) {
-    elem.className = elem.className.replace( classReg( c ), ' ' );
-  };
-}
 
-window.classie = {
-  // full names
-  hasClass: hasClass,
-  addClass: addClass,
-  removeClass: removeClass,
-  // short names
-  has: hasClass,
-  add: addClass,
-  remove: removeClass
-};
+    // classList support for class management
+    // altho to be fair, the api sucks because it won't accept multiple classes at once
+    var hasClass, addClass, removeClass;
+
+    if ( 'classList' in document.documentElement ) {
+        hasClass = function( elem, c ) {
+            return elem.classList.contains( c );
+        };
+        addClass = function( elem, c ) {
+            elem.classList.add( c );
+        };
+        removeClass = function( elem, c ) {
+            elem.classList.remove( c );
+        };
+    }     else {
+        hasClass = function( elem, c ) {
+            return classReg( c ).test( elem.className );
+        };
+        addClass = function( elem, c ) {
+            if ( !hasClass( elem, c ) ) {
+                elem.className = elem.className + ' ' + c;
+            }
+        };
+        removeClass = function( elem, c ) {
+            elem.className = elem.className.replace( classReg( c ), ' ' );
+        };
+    }
+
+    window.classie = {
+        // full names
+        hasClass: hasClass,
+        addClass: addClass,
+        removeClass: removeClass,
+        // short names
+        has: hasClass,
+        add: addClass,
+        remove: removeClass
+    };
 
 })( window );

@@ -1,88 +1,89 @@
-$(document).ready(function () {
+$(document).ready(function() {
     setTimeout(function(){
         $('.content-wrapper').addClass('loaded');
         $('.fade_background').addClass('loaded');
         $('#bgvid').addClass('loaded');
         $('.banner-text').addClass('loaded');
     }, 200);
-    $('#searchInput').focus(function () {
-        $('.suggestion-box').addClass('open');
-    }).focusout(function () {
-        $('.suggestion-box').removeClass('open');
-    });
-    $('#searchInputMobile').focus(function () {
-        $('.suggestion-box').addClass('open');
-    }).focusout(function () {
-        $('.suggestion-box').removeClass('open');
-    });
+    // $('#searchInput').focus(function () {
+    //     $('.suggestion-box').addClass('open');
+    // }).focusout(function () {
+    //     $('.suggestion-box').removeClass('open');
+    // });
+    // $('#searchInputMobile').focus(function () {
+    //     $('.suggestion-box').addClass('open');
+    // }).focusout(function () {
+    //     $('.suggestion-box').removeClass('open');
+    // });
     [].slice.call( document.querySelectorAll( '.dotstyle > ul' ) ).forEach( function( nav ) {
         new DotNav( nav, {
             callback : function( idx ) {
-                //console.log( idx )
+                // console.log( idx )
             }
         });
     });
-    $('.page-navigation .dotstyle-tooltip li').click(function () {
+    $('.page-navigation .dotstyle-tooltip li').click(function() {
         var hash = $(this).find('a').attr('href');
         console.log(hash);
         $('html,body').animate({
-                scrollTop: $(hash).offset().top - 115},
-            'slow');
+            scrollTop: $(hash).offset().top - 115 },
+        'slow');
     });
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         windowScroll();
     });
     windowScroll();
 
     function windowScroll() {
-        if($(window).scrollTop() >= $('#about').offset().top) {
+        if ($(window).scrollTop() >= $('#about').offset().top) {
             console.log($(window).scrollTop() >= $('#about').offset().top );
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#about-link').addClass('current');
         }
-        if($(window).scrollTop() >= $('#whoWeAre').offset().top - 116) {
+        if ($(window).scrollTop() >= $('#whoWeAre').offset().top - 116) {
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#whoWeAre-link').addClass('current');
         }
-        if($(window).scrollTop() >= $('#insights').offset().top - 116) {
+        if ($(window).scrollTop() >= $('#insights').offset().top - 116) {
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#insights-link').addClass('current');
         }
-        if($(window).scrollTop() >= $('#gallery').offset().top - 116) {
+        if ($(window).scrollTop() >= $('#gallery').offset().top - 116) {
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#gallery-link').addClass('current');
         }
-        if($(window).scrollTop() >= $('#testimonials').offset().top - 116) {
+        if ($(window).scrollTop() >= $('#testimonials').offset().top - 116) {
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#testimonials-link').addClass('current');
         }
-        if($(window).scrollTop() >= $('#contact').offset().top - 116) {
+        if ($(window).scrollTop() >= $('#contact').offset().top - 116) {
             $('.page-navigation .dotstyle-tooltip li').removeClass('current');
             $('.page-navigation .dotstyle-tooltip li#contact-link').addClass('current');
         }
     }
 
 
-    if($(window).scrollTop() >= $('#insights').offset().top - 500) {
-        showInsights()
+    if ($(window).scrollTop() >= $('#insights').offset().top - 500) {
+        showInsights();
     }
 
     var locked = false;
 
-    $(window).scroll(function () {
-        if($(window).scrollTop() >= $('#insights').offset().top - 500 && !locked) {
-            showInsights()
+    $(window).scroll(function() {
+        if ($(window).scrollTop() >= $('#insights').offset().top - 500 && !locked) {
+            showInsights();
         }
     });
 
     var menuTriggerBttn = $( '#menu-trigger' ),
         menuOverlay = $( '#menu-overlay' ),
         menuCloseBttn = $( 'button.menu-container--close' );
-    menuTriggerBttn.click(function () {
+    menuTriggerBttn.click(function() {
+        console.log('+ clicked');
         menuOverlay.slideToggle('slow');
     } );
-    menuCloseBttn.click(function () {
+    menuCloseBttn.click(function() {
         menuOverlay.slideToggle('slow');
     } );
 
@@ -90,22 +91,22 @@ $(document).ready(function () {
         triggerBttnMobile = $( '#trigger-overlay-mobile' ),
         overlay = $( 'div.overlay.style' ),
         closeBttn = $( 'button.video-container--close' );
-    triggerBttn.click(function () {
-        console.log('hadnasd')
+    triggerBttn.click(function() {
+        console.log('hadnasd');
         var video = $('div.overlay.style').attr('data-video');
         $('div.overlay.style').fadeIn('slow');
         $('div.overlay.style').append(
             '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + video + '?autohide=1&autoplay=1&color=red&controls=0&disablekb=1&enablejsapi=1&fs=0&iv_load_policy=3&loop=0&modestbranding=1&rel=0&showinfo=0&origin=http%3A%2F%2Fwww.uvelanghe.it&widgetid=2" frameborder="0" allowfullscreen></iframe>'
-        )
+        );
     } );
-    triggerBttnMobile.click(function () {
+    triggerBttnMobile.click(function() {
         var video = $('div.overlay.style').attr('data-video');
         $('div.overlay.style').fadeIn('slow');
         $('div.overlay.style').append(
             '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/' + video + '?autohide=1&autoplay=1&color=red&controls=0&disablekb=1&enablejsapi=1&fs=0&iv_load_policy=3&loop=0&modestbranding=1&rel=0&showinfo=0&origin=http%3A%2F%2Fwww.uvelanghe.it&widgetid=2" frameborder="0" allowfullscreen></iframe>'
-        )
+        );
     } );
-    closeBttn.click(function () {
+    closeBttn.click(function() {
         $('div.overlay.style').fadeOut('slow');
         $('div.overlay.style iframe').remove();
     } );
